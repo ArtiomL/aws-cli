@@ -10,7 +10,7 @@ LABEL maintainer="Artiom Lichtenstein" version="1.0.0"
 # Core dependencies
 RUN apk add --update --no-cache git groff jq less python3 && \
 	pip3 install --no-cache-dir --upgrade pip && \
-	pip3 install --no-cache-dir awscli && \
+	pip3 install --no-cache-dir awscli boto3 && \
 	pip3 uninstall -y pip setuptools && \
 	rm -rf /var/cache/apk/*
 
