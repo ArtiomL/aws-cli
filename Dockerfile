@@ -1,16 +1,16 @@
 # aws-cli - Dockerfile
 # https://github.com/ArtiomL/aws-cli
 # Artiom Lichtenstein
-# v1.0.0, 17/03/2019
+# v1.0.1, 27/03/2019
 
 FROM alpine
 
-LABEL maintainer="Artiom Lichtenstein" version="1.0.0"
+LABEL maintainer="Artiom Lichtenstein" version="1.0.1"
 
 # Core dependencies
 RUN apk add --update --no-cache git groff jq less python3 && \
 	pip3 install --no-cache-dir --upgrade pip && \
-	pip3 install --no-cache-dir awscli boto3 && \
+	pip3 install --no-cache-dir awscli aws-shell boto3 && \
 	pip3 uninstall -y pip setuptools && \
 	rm -rf /var/cache/apk/*
 
