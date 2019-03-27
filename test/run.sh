@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # aws-cli - Run Tests
 # https://github.com/ArtiomL/aws-cli
 # Artiom Lichtenstein
@@ -12,7 +12,7 @@ REPO="artioml/aws-cli"
 str_TEST="aws --version"
 
 if [ "$TRAVIS" == "true" ]; then
-	docker run $REPO /bin/sh -c "set -xeo pipefail; $str_TEST"
+	docker run $REPO /bin/bash -c "set -xeo pipefail; $str_TEST"
 else
 	eval "$str_TEST"
 fi
