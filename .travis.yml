@@ -1,0 +1,33 @@
+# aws-cli - CI Build
+# https://github.com/ArtiomL/aws-cli
+# Artiom Lichtenstein
+# v1.0.0, 27/03/2019
+
+sudo: required
+
+env:
+  global:
+  - REPO="artioml/aws-cli"
+  - secure: "j89VhpbX3gGbw7U/du3OD7hZxmxc9uuikeZT8gkgs1WiqQWHuYne2VS74m98Oh0xmG7RwG+/Mkp3GkseRWp9f2lYqVqkVdRZRV8/Fou2mc8wV6MKuP7LVDORMgIRE1rUeFtky64aQenZZs/fNnzc2sj7sVvoCWOUWxEyXDvG+8uj1TVU04qzqcUEI+zs12jDHT/2JWs0HrOytGVa6vKyTrrlq+wvburtb4s5sYbTOvo4Dd972SqBL6NcQSdBqCZEHjMlGXHQQSOtImu3T/NmSQgoCC9mlXI+a4Q2Mv9zQhzMr/ZxZ94XcEToGx6f/xHKcmbjCxkPMhIPCKATpXjtm3JVjGz+fzd0ImItvq7LR7RcYcqO0W5CoTO64pSobehAUJSshR2zdYLZzkukz4eAGEGv26rL7YWkgite1eoDzp3fDyoqmzf6lmFanw8Zi5VlNwrp4yPKP8ZxU15vkuuJPp+QyYwbu1U6ttbv76lLvgR1AjewqV77b6hYRU+oCTwynpltTGCs29ooMHU2TJkSeqXF31P3r0SQO9FEuoeFbwRYAgODzjhZlYDFWFww0I/rwrenSVVv4NNG/Znw+lSzbiWyVnk2uGxwLoMyiJNIurlpqKKPi5H3HLdvp0DAX0B+6pq+Gjh66jtyCEj/7jyGcnDuIH4AWHg/QDm9qQ5HQ98="
+  - secure: "C31p0yXqprQm/xt5brZXM4JoLqV5JuuT5B7mComllOj/Q3+1njbMLArX+2cIFnLjw3vysKyVAcp7oLgFqtJAgKbO2q5+ho2N6j1tLcivCHJg5c0j8U4aFQjvHj5DsRucT/8855QbVpKOb0s2T7GR6DJVzqv/xsxHYbEby7KuB3rZKk3CONFH16VY5p5KfYDF6vrCvXkW053ozEhxX1VSMdsapXdKb5HK2QqLYlJjeYiJcNROJQXXFQ7f9X3+Pp2M2LIucN47tBuvuYso6iVRmpLUAcNCNd3b0iXYc9AGcRKw6Mf5JuVOloPOWpQcUCLYjB9+6Lrg5TPVc2SfKDrI5IKhNXOdG1/GX33r0luG4ZMfJea5fLqj58hnkR1E1cqSXtFRqfCfLuHhh9o0U6SUKKLAgxeawV126EdCuIWBY3KQTJnezXX4Ajvoy1OOAoAWmpeR/ZymYLFvpLlWyeE+K50alT9gW+Qr1AMFZlMSSH7Ee5UVXBdPDOV/5l5GEJ9NGAPuFl10sv0ywukRkag8nzUdTB8FUHjWA5RMeaoaiPVwWmjyCZuj72X1sM0gCMXBWC01BeylvK85xTqzcNfX9L6DVtS9n4yegqKoL2vvJHzl8WicvUYnC5AthUvS69Tj8LgagAC7cvoeNaNGBPFr1hqcR5Mr7qgHW1S+MR4hONU="
+
+services:
+  - docker
+
+before_script:
+  - chmod +x test/run.sh
+
+script:
+  - docker build -t $REPO .
+  - test/run.sh
+
+after_success:
+  - docker images
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u $DOCKER_USER -p $DOCKER_PASS;
+    docker push $REPO;
+    fi
+
+notifications:
+  slack:
+    secure: "XyPYxLIKcXe+nP/KCuI0noFnL0tFoTFCVTbxAo3+2LEPpJYvvUaOdIKGb6U/+4Tb0rtfQCvq6v48URij8Y+EIePyRQchfyzRT7Aj7L6rftVBP3td8l11zlZFynq78GBGgi7Q5G7J+8uMGEWt9sUIKsJhqYdhS4gOW05c089jFDT5PGWj3GMv+IWO/EU0Ivb05H/Qd8h8iu3/aanj0qMcXpazCCXEkIG+fq1Kn3gbbwhZE3ZkuDhyyIvNAx62QzJiNP81NrqQ9Vig5NmiciRg3BlIxCKJLq/NQL/TGX3+1pZD2A/DG+exN4tnfucLGGsgFEa5Cw4eHokgdUibSQ3YGRLHyA4h7vW0x7rVKE9+l6SrkjEpCoLwcL/HnmuPlzw0QygjPoySfAoNlBSORuW1dNsJ/4dLM2ouYA823/6KBFUSEsg/vhW7FQ9pqjVa6PcNDFNH20aTT0mVZJS58PG2Sfo+Qxtbg53U04B2T+V9eOTSo/LcAJsC17Fs/DIXBCtVp4UxSqI23fP9AKdyC7BaYEa+1xkydhBaz3QtuvEiWGO7otKj0R7rzzH5AYoLlrjaAIUjsVjWRslhDsZTUPhHEBxuf4DFcH8XLKY8TIF78csXMCsQ2tYs6SNgmYPs7YHU7DaYJrpr+oyyHs6kvp2RpWn15kMCVFQlY0mgjrmFYjg="
