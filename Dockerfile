@@ -8,7 +8,7 @@ FROM alpine
 LABEL maintainer="Artiom Lichtenstein" version="1.0.1"
 
 # Core dependencies
-RUN apk add --update --no-cache git groff jq less python3 && \
+RUN apk add --update --no-cache bash git groff jq less python3 && \
 	pip3 install --no-cache-dir --upgrade pip && \
 	pip3 install --no-cache-dir awscli aws-shell boto3 && \
 	pip3 uninstall -y pip setuptools && \
