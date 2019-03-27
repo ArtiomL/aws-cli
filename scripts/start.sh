@@ -9,4 +9,4 @@ if [[ ! -z "$REPO" ]]; then
 	cd $(echo "$REPO" | cut -d"/" -f2)
 fi
 
-exec /bin/sh
+exec /bin/bash
