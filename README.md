@@ -2,7 +2,7 @@
 [![Build Status](https://img.shields.io/travis/com/ArtiomL/aws-cli/develop.svg)](https://travis-ci.com/ArtiomL/aws-cli)
 [![Releases](https://img.shields.io/github/release/ArtiomL/aws-cli.svg)](https://github.com/ArtiomL/aws-cli/releases)
 [![Commits](https://img.shields.io/github/commits-since/ArtiomL/aws-cli/latest.svg?label=commits%20since)](https://github.com/ArtiomL/aws-cli/commits/master)
-[![Maintenance](https://img.shields.io/maintenance/yes/2019.svg)](https://github.com/ArtiomL/aws-cli/graphs/code-frequency)
+[![Maintenance](https://img.shields.io/maintenance/yes/2022.svg)](https://github.com/ArtiomL/aws-cli/graphs/code-frequency)
 [![Issues](https://img.shields.io/github/issues/ArtiomL/aws-cli.svg)](https://github.com/ArtiomL/aws-cli/issues)
 [![Docker Hub](https://img.shields.io/docker/pulls/artioml/aws-cli.svg)](https://hub.docker.com/r/artioml/aws-cli/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
