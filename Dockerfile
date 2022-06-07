@@ -17,7 +17,9 @@ FROM amazonlinux:2
 # Core dependencies
 RUN yum update -y && \
     yum install -y git groff jq less python3 vim && \
-    yum clean all
+    yum clean all && \
+    pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir aws-shell
 
 # aws-cli
 COPY --from=installer /usr/local/aws-cli/ /usr/local/aws-cli/
