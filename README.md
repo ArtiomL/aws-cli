@@ -30,7 +30,7 @@ Essential Amazon Web Services container with CLI, interactive shell, Python SDK 
 
 ### Run
 ```shell
-# aws-cli/1.16.255
+# aws-cli/2.7.6
 docker run -it artioml/aws-cli
 
 ```
